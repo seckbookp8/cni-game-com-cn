@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 ─ 产品说明与站点介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #fafafa;
+      color: #1e1e1e;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 90%;
+      padding: 3rem 0 4rem;
+    }
+
+    /* hero 区域 */
+    .hero {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 2.2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+      color: #111;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #5c5c5c;
+      max-width: 540px;
+    }
+
+    /* 摘要 */
+    .summary {
+      margin-bottom: 2.8rem;
+      background: #ffffff;
+      padding: 1.6rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      border: 1px solid #ececec;
+    }
+
+    .summary p {
+      font-size: 1.05rem;
+      color: #2a2a2a;
+    }
+
+    .summary strong {
+      font-weight: 500;
+      color: #000;
+    }
+
+    /* 层级标题 */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 2.4rem 0 1rem 0;
+      letter-spacing: -0.01em;
+      color: #1c1c1c;
+      border-left: 3px solid #1e1e1e;
+      padding-left: 0.75rem;
+    }
+
+    /* 特点卡片 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2.6rem;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      padding: 1.2rem 1.2rem 1.2rem 1.4rem;
+      border-radius: 10px;
+      border: 1px solid #eaeaea;
+      transition: border 0.15s;
+    }
+
+    .feature-card:hover {
+      border-color: #b0b0b0;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: #4a4a4a;
+    }
+
+    /* 使用建议 / 场景 */
+    .scenario {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.6rem 2rem;
+      margin-bottom: 2.6rem;
+      border: 1px solid #ececec;
+    }
+
+    .scenario ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .scenario li {
+      padding: 0.5rem 0;
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .scenario li::before {
+      content: "·";
+      color: #3a3a3a;
+      font-weight: 700;
+    }
+
+    /* 可信说明 + FAQ 摘要 */
+    .trust-note {
+      background: #f4f4f4;
+      padding: 1.6rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2.8rem;
+    }
+
+    .trust-note p {
+      font-size: 0.95rem;
+      color: #2e2e2e;
+    }
+
+    .faq-mini {
+      margin-top: 1.2rem;
+    }
+
+    .faq-item {
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-item .q {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-item .a {
+      color: #4b4b4b;
+      font-size: 0.9rem;
+      padding-left: 0.75rem;
+      border-left: 2px solid #cdcdcd;
+    }
+
+    /* 嵌入链接 */
+    .inline-link {
+      color: #1a1a1a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 0.5px;
+      transition: color 0.1s;
+    }
+
+    .inline-link:hover {
+      color: #3d3d3d;
+      text-decoration-thickness: 1px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .container {
+        width: 92%;
+        padding: 2rem 0 3rem;
+      }
+
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+
+      .summary {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario,
+      .trust-note {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #7a7a7a;
+      border-top: 1px solid #ddd;
+      padding-top: 1.6rem;
+      text-align: center;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 0.5rem 0 1.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>爱游戏 · 产品式说明</h1>
+      <div class="sub">站点介绍与可信概况 ─ 面向希望了解 <a href="https://cni-game.com.cn" class="inline-link">爱游戏</a> 的用户</div>
+    </div>
+
+    <!-- 摘要 -->
+    <div class="summary">
+      <p><strong>爱游戏</strong> 是一个围绕游戏内容与浏览体验而设立的站点。本页从产品说明视角出发，整理该站点的定位、主要特点、适用场景以及相关可信说明，帮助新访客快速形成清晰认知。以下信息均基于公开可查的页面结构与功能描述，不构成任何形式的承诺或保证。</p>
+    </div>
+
+    <!-- 亮点 / 特征 -->
+    <div class="section-title">亮点特征</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>信息聚合</h3>
+        <p>以游戏相关资讯、介绍或资源索引为主，内容组织形式偏向简明目录式。</p>
+      </div>
+      <div class="feature-card">
+        <h3>低干扰浏览</h3>
+        <p>页面设计克制，广告与弹窗较少，阅读连贯性较好。</p>
+      </div>
+      <div class="feature-card">
+        <h3>直接访问</h3>
+        <p>无需额外注册或下载即可浏览主要公开内容，门槛较低。</p>
+      </div>
+      <div class="feature-card">
+        <h3>持续维护</h3>
+        <p>站点保持更新，内容时效性在同类站点中处于常规水平。</p>
+      </div>
+    </div>
+
+    <!-- 使用建议 / 场景 -->
+    <div class="section-title">适用场景与建议</div>
+    <div class="scenario">
+      <ul>
+        <li>希望快速了解某一款新上线游戏的基础信息时，可通过 <a href="https://cni-game.com.cn" class="inline-link">爱游戏</a> 查看摘要与列表。</li>
+        <li>日常浏览游戏新闻、版本更新记录或活动公告，该站点常提供简洁版本。</li>
+        <li>若需查询游戏历史资料或横向对比，建议将本站作为起点之一，再配合其他来源交叉确认。</li>
+        <li>移动端访问体验较流畅，适合碎片时间快速翻阅。</li>
+      </ul>
+    </div>
+
+    <!-- 可信但克制的说明 + FAQ 摘要 -->
+    <div class="section-title">可信说明与常见疑问摘要</div>
+    <div class="trust-note">
+      <p><strong>关于信息准确性</strong>：爱游戏所呈现的内容均基于公开来源整理，但无法保证每一条目均无延迟或偏差。对于重要决策（例如购买、下载、参与活动），建议核实官方渠道。<br><br>
+      <strong>关于第三方链接</strong>：站点中可能包含跳转到外部网站的链接，其内容与安全性与本站无关，访问时请注意辨别。</p>
+
+      <hr>
+
+      <div class="faq-mini">
+        <div class="faq-item">
+          <span class="q">Q: 是否需要付费才能使用？</span>
+          <span class="a">不需要。目前浏览公开页面不收取费用，也不强制注册。</span>
+        </div>
+        <div class="faq-item">
+          <span class="q">Q: 内容更新频率如何？</span>
+          <span class="a">视话题热度而定，通常每周有若干次新增或修正，无固定时刻表。</span>
+        </div>
+        <div class="faq-item">
+          <span class="q">Q: 怎样快速找到特定内容？</span>
+          <span class="a">建议先使用站内导航或搜索功能（若有），或直接通过分类标签筛选。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 再自然嵌入一次链接（句子中） -->
+    <p style="font-size:0.95rem; color:#3a3a3a; margin-top:0.2rem;">如果你对游戏信息聚合站点感兴趣，可以将 <a href="https://cni-game.com.cn" class="inline-link">爱游戏</a> 加入书签，作为日常参考渠道之一。</p>
+
+    <footer>
+      <span>本介绍页仅为说明用途，不隶属于爱游戏官方。内容更新于 2025 年。</span>
+    </footer>
+  </div>
+</body>
+</html>

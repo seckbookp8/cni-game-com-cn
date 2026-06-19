@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://seckbookp8.github.io/cni-game-com-cn/sitemap.xml
