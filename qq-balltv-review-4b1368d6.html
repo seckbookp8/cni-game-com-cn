@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>QQ-BallTV · NBA直播导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', '华文宋体', 'Songti SC', serif;
+            background-color: #faf8f5;
+            color: #2c2c2c;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-wrapper {
+            max-width: 880px;
+            width: 100%;
+            margin: 0 auto;
+            background: #fffcf9;
+            padding: 2.2rem 2.8rem;
+            border-radius: 28px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: all 0.25s ease;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1rem 0.75rem; }
+            .page-wrapper { padding: 1.6rem 1.2rem; border-radius: 20px; }
+        }
+
+        /* 主标 / 导航感 */
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #a77b5a;
+            border-bottom: 1px solid #e2d7cc;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1.8rem;
+            font-family: 'Inter', 'Helvetica Neue', sans-serif;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #2b1f16;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            color: #6b5a4a;
+            margin-bottom: 1.4rem;
+            border-left: 3px solid #c7b5a2;
+            padding-left: 1.2rem;
+            font-style: italic;
+        }
+
+        .intro-summary {
+            background: #f5efe9;
+            padding: 1.4rem 1.8rem;
+            border-radius: 18px;
+            margin: 2rem 0 1.8rem;
+            font-size: 1.05rem;
+            border: 1px solid #e6dbd0;
+            box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.7);
+        }
+
+        .intro-summary p {
+            margin-bottom: 0.3rem;
+        }
+
+        .intro-summary strong {
+            color: #573e2b;
+            font-weight: 600;
+        }
+
+        /* 引用块 / 提示框 */
+        .insight-box {
+            background: #fff9f2;
+            border-left: 8px solid #b48c6c;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0;
+            border-radius: 0 20px 20px 0;
+            font-size: 0.98rem;
+            color: #3a3128;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .insight-box p {
+            margin: 0.4rem 0;
+        }
+
+        .insight-box .label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            color: #8f735b;
+            text-transform: uppercase;
+            background: #e9dbcf;
+            padding: 0.1rem 0.8rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 特点卡片区域 */
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2rem 0 1.6rem;
+        }
+
+        .feature-card {
+            flex: 1 1 180px;
+            background: #ffffff;
+            border: 1px solid #ede5dc;
+            border-radius: 22px;
+            padding: 1.4rem 1.2rem 1.2rem;
+            transition: all 0.1s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #3a2a1c;
+            margin-bottom: 0.6rem;
+            border-bottom: 1px dashed #dccfc2;
+            padding-bottom: 0.3rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #4f4136;
+        }
+
+        /* 使用建议 场景段落 */
+        .usage-section {
+            display: flow-root;
+            margin: 2rem 0 1.2rem;
+        }
+
+        .usage-section h2 {
+            font-size: 1.5rem;
+            font-weight: 450;
+            color: #352b22;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.3px;
+        }
+
+        .usage-section p {
+            margin-bottom: 1rem;
+        }
+
+        .inline-link {
+            color: #795f45;
+            text-decoration: none;
+            border-bottom: 1px solid #c7b19b;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 400;
+        }
+
+        .inline-link:hover {
+            color: #402d1d;
+            border-bottom: 1px solid #402d1d;
+        }
+
+        /* FAQ 摘要 (折叠感) */
+        .faq-mini {
+            background: #f7f2eb;
+            border-radius: 24px;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .faq-mini h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4a3a2c;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .faq-item {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #dfd3c7;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            color: #4d3827;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .faq-item span {
+            color: #5c4b3b;
+        }
+
+        .footnote {
+            margin-top: 2.5rem;
+            font-size: 0.9rem;
+            color: #7f6f5e;
+            border-top: 1px solid #e1d7cc;
+            padding-top: 1.2rem;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .footnote small {
+            opacity: 0.7;
+        }
+
+        .dot-divider {
+            display: inline-block;
+            margin: 0 0.5rem;
+            color: #b9a998;
+        }
+
+        /* 按钮感弱化 只保留干净交互 */
+        .quiet-link {
+            color: #795f45;
+            border-bottom: 1px dotted #bcab99;
+            text-decoration: none;
+        }
+        .quiet-link:hover {
+            border-bottom: 1px solid #795f45;
+        }
+
+        /* 响应式修正 */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .subhead { font-size: 1rem; }
+            .features-grid { flex-direction: column; }
+            .faq-mini { padding: 1rem; }
+        }
+
+        /* 备用引用样式 */
+        .note-flag {
+            background: #f8f0e7;
+            padding: 0.2rem 1rem 0.2rem 0.6rem;
+            display: inline-block;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #624b37;
+            margin-right: 0.4rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- 轻量 hero 区域 -->
+    <div class="hero-tag"> ⚡ 指引 · 识别 </div>
+    <h1>QQ-BallTV 是什么 &middot; 从一场比赛说起</h1>
+    <div class="subhead">不用反复搜寻，一个指向清晰观赛路径的页面</div>
+
+    <!-- 摘要卡片：快速识别用途 -->
+    <div class="intro-summary">
+        <p><strong>站点摘要</strong> —— 如果你打开浏览器只想找一个能看 <a href="https://qq-balltv.com" class="inline-link">NBA直播</a> 的地方，那么 QQ-BallTV 就是整合多种信号来源的导航服务。它本身不生产比赛画面，而是提供聚合式入口，帮你从零散链接里抽出一个相对稳定的观赛路径。页面以比赛日程、直播频道和实时比分索引为主，适合赛前快速定位。</p>
+        <p style="margin-top:0.6rem;">一句话识别：这是一个以 NBA 为核心，聚合信号入口的辅助索引页。</p>
+    </div>
+
+    <!-- 亮点 / 特点 卡片 -->
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>📋 赛程整合</h3>
+            <p>按日期、对阵排列，省去手动查找球队开赛时间的步骤。常规赛、季后赛阶段均有对应版块。</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔗 多源链接</h3>
+            <p>同一场比赛列出数个信号选择，你可以根据延迟、清晰度或语言偏好自行尝试。</p>
+        </div>
+        <div class="feature-card">
+            <h3>📊 实时摘要</h3>
+            <p>页面也会更新当前比分、剩余时间等简讯，便于你快速判断比赛是否值得切过去看。</p>
+        </div>
+    </div>
+
+    <!-- 使用建议 + 场景 -->
+    <div class="usage-section">
+        <h2>使用场景与建议</h2>
+        <p>大多数用户会在开赛前 5–10 分钟打开 QQ-BallTV，从列表中选定一个链接进入。由于外部直播源时有变动，页面通常会保留多个备选；如果某条线路失效，可以返回页面尝试其他链接。同时建议搭配 ad-block 扩展，减少弹窗干扰。</p>
+        <p>如果你是第一次使用，可以留意页面顶部或侧栏的“当前热门”板块——那里通常会列出焦点战（如圣诞大战、分区决赛）的最直接入口。把 <a href="https://qq-balltv.com" class="inline-link">NBA直播</a> 加入书签，每赛季你都会用得上。</p>
+
+        <!-- 提示框：访问说明 可信但克制 -->
+        <div class="insight-box">
+            <div class="label">📌 访问说明</div>
+            <p>QQ-BallTV 不托管任何视频流，也不要求注册或付费。页面收集的链接来自公开网络，质量与稳定性由源站点决定。遇到链接失效属正常现象，请稍后或换个时段再试。我们建议始终通过官方或授权平台观看比赛，本页仅为辅助查找工具。</p>
+            <p style="margin-top:0.3rem;">⚠️ 任何要求提供个人隐私或支付信息的弹窗都与本站无关，请保持警惕。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 3个典型问题 -->
+    <div class="faq-mini">
+        <h4>❓ 常见疑问 · 快速摘要</h4>
+        <div class="faq-item">
+            <strong>Q： 页面打不开或加载慢？</strong><br>
+            <span>A： 部分网络环境下可能受限，可尝试切换 DNS 或使用镜像。本站服务器位于海外，国内访问偶有波动。</span>
+        </div>
+        <div class="faq-item">
+            <strong>Q： 链接点进去是广告/空白？</strong><br>
+            <span>A： 部分直播源外链确实包含广告层，关闭弹窗后通常可正常观看。若连续空白可更换备选链接。</span>
+        </div>
+        <div class="faq-item">
+            <strong>Q： 有回放或集锦吗？</strong><br>
+            <span>A： 本站主要聚焦实时直播与赛程，回放资源较少。建议赛后在官方平台或合作频道查看完整录像。</span>
+        </div>
+    </div>
+
+    <!-- 再次嵌入主链接 + 友好的footer -->
+    <div style="margin: 1rem 0 0.2rem;">
+        <p style="background: #f2ebe3; display: inline-block; padding: 0.2rem 1.2rem 0.2rem 1.2rem; border-radius: 30px; font-size:0.95rem;">
+            🏀 快速入口：<a href="https://qq-balltv.com" class="inline-link" style="font-weight:450;">NBA直播</a>
+            &nbsp;· 赛程·比分·多线路
+        </p>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footnote">
+        <span>© 页面索引 · 内容仅供参考</span>
+        <span><small>生成种子 90a1411c</small> <span class="dot-divider">·</span> <small>非官方站点</small></span>
+    </div>
+</div>
+</body>
+</html>
