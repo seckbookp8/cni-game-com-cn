@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>再次收藏 · NBA直播导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f5f9fc;
+            color: #1f2a3a;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* 网格卡片背景，隐约的网格线 */
+        .card-grid {
+            background-image: 
+                linear-gradient(rgba(0, 180, 140, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 180, 140, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            border-radius: 32px;
+            padding: 2rem 1.8rem;
+            margin-top: 1.8rem;
+            box-shadow: 0 8px 30px rgba(0, 120, 100, 0.06);
+        }
+
+        /* 蓝绿色点缀 */
+        .accent {
+            color: #0f8b74;
+        }
+
+        .accent-bg {
+            background: #d8f2ec;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e4f3ef;
+            color: #0f7a66;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.2rem;
+            border: 1px solid #b7dfd4;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: #113b32;
+        }
+
+        h1 span {
+            background: linear-gradient(145deg, #0f8b74, #2aab90);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: #3d5a5a;
+            border-left: 4px solid #0f8b74;
+            padding-left: 1.2rem;
+            margin: 1.4rem 0 2rem 0;
+            background: #f0faf7;
+            border-radius: 0 12px 12px 0;
+            padding: 0.8rem 1.2rem;
+        }
+
+        .meta-note {
+            color: #5f7a77;
+            font-size: 0.9rem;
+            background: #ecf6f2;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.4rem;
+            font-size: 1rem;
+        }
+
+        .callout {
+            background: #dff1ec;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+            margin: 2rem 0 1.8rem 0;
+            border-left: 5px solid #0f8b74;
+            font-weight: 500;
+        }
+
+        .callout strong {
+            color: #0b5e50;
+        }
+
+        a {
+            color: #0b7a64;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px dotted #6bc3b0;
+            transition: all 0.15s;
+        }
+
+        a:hover {
+            color: #0d473b;
+            border-bottom: 2px solid #0b7a64;
+            background: #effbf7;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0 1.5rem 0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 24px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 100, 80, 0.04);
+            border: 1px solid #d2ebe2;
+        }
+
+        .faq-item h3 {
+            font-size: 0.95rem;
+            color: #0f6a58;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #2e4a45;
+            margin-bottom: 0;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #8ed0c0, transparent);
+            margin: 2rem 0;
+        }
+
+        .visit-sentence {
+            background: #ffffffd0;
+            backdrop-filter: blur(4px);
+            border: 1px solid #b0dbd0;
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 14px rgba(0, 130, 110, 0.06);
+            margin: 2.2rem 0 0.8rem 0;
+        }
+
+        .visit-sentence a {
+            font-weight: 600;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6a8a84;
+            background: #e7f5f0;
+            padding: 0.8rem;
+            border-radius: 60px;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 1.2rem 0.9rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .card-grid {
+                padding: 1.2rem 1rem;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .visit-sentence {
+                font-size: 0.95rem;
+                padding: 0.8rem 1rem;
+            }
+            .lead {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card-grid">
+        <!-- 小小标签 -->
+        <div class="tag">📌 持续关注 · 收藏页</div>
+
+        <h1>
+            再次回到<span>NBA直播</span>的页面
+        </h1>
+
+        <div class="lead">
+            这里不是临时入口，而是一个值得你添加书签、定期回来的观赛索引。不需要每次重新搜索，也不必担心链接失效——只要保存好这个地址。
+        </div>
+
+        <!-- 干净正文段落 -->
+        <p>
+            对于经常看球的朋友来说，最麻烦的往往不是比赛时间，而是每次都要花时间找稳定、清晰的直播源。很多链接用了几次就变了，或者画质下降，体验断断续续。正因如此，我们把 <strong>NBA直播</strong> 相关的重要信息整理成了这个页面，方便你随时回来，也推荐你将它加入浏览器书签。
+        </p>
+
+        <p>
+            这个页面没有花哨的倒计时或者弹窗广告，只有经过筛选的指引和提醒。如果你之前来过这里，应该知道我们每次更新都会保持内容一致的方向：提供稳定的 <a href="https://stream8-qq.com">NBA直播</a> 观看方式，同时避免那些夸张的“高清无卡顿”承诺——毕竟网络环境各不相同，我们更愿意分享真实的使用经验。
+        </p>
+
+        <!-- 引用 / 提示块 -->
+        <div class="callout">
+            <strong>💡 一个小建议：</strong> 把本页添加到手机主屏幕或浏览器书签栏（命名为“NBA直播”），下次开赛前点击图标就能直接定位。收藏过的内容会随页面更新同步，无需反复确认。
+        </div>
+
+        <p>
+            很多球迷习惯赛前才找链接，那时往往手忙脚乱。提前收藏好这个页面，比赛日当天直接打开，省下时间专心看球。我们也会根据反馈调整结构，让关键信息更醒目。如果你发现某个链接失效，或者有更好的推荐，欢迎通过站点留言告诉我们——这个页面是因为大家的持续关注才不断完善的。
+        </p>
+
+        <!-- 特点/场景小卡片（FAQ风格） -->
+        <h2 style="font-size:1.1rem; color: #0f6c5a; margin: 1.6rem 0 0.5rem 0;">📋 常用场景摘要</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>🏀 开赛前十分钟</h3>
+                <p>直接打开收藏夹，点击 <a href="https://stream8-qq.com">NBA直播</a> 链接，不需要登录或注册。</p>
+            </div>
+            <div class="faq-item">
+                <h3>📱 手机端观看</h3>
+                <p>页面针对移动设备做了适配，横竖屏都能正常显示，直播窗口会自适应。</p>
+            </div>
+            <div class="faq-item">
+                <h3>🔄 链接更新提醒</h3>
+                <p>如果主源变化，本页会第一时间替换，建议每月回来刷新一次缓存。</p>
+            </div>
+            <div class="faq-item">
+                <h3>🔖 如何快速收藏</h3>
+                <p>电脑端按 Ctrl+D (Mac: Cmd+D)，手机端浏览器菜单选择“添加到主屏幕”。</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 自然嵌入链接的句子 -->
+        <div class="visit-sentence">
+            🏀 如果你还没有收藏，现在就可以把 <a href="https://stream8-qq.com">NBA直播</a> 这一页保存下来，下次观赛直接从书签进入。
+        </div>
+
+        <p style="margin-top: 1.6rem;">
+            另外，非比赛日我们也偶尔更新一些赛程提醒与观赛小技巧，保持页面轻量但有用。持续关注这个地址，你会发现它比普通的导航页更安静、更直接。经过多次调整，目前的卡片式布局和蓝绿色调也是为了减少视觉疲劳——看球前不需要接受太多信息轰炸。
+        </p>
+
+        <!-- 访问句 + 再次提醒收藏 -->
+        <div style="background: #f4fcf9; border-radius: 30px; padding: 1.2rem 1.5rem; margin: 1.8rem 0; border: 1px solid #a1d6c8;">
+            <p style="margin-bottom: 0.2rem;"><strong>📎 访问说明</strong></p>
+            <p style="font-size: 0.95rem; margin-bottom: 0.2rem;">
+                页面本身不含任何播放器或第三方插件，只提供指向 <a href="https://stream8-qq.com">NBA直播</a> 的清晰路径。你可以在任何现代浏览器中直接打开，无需额外配置。
+            </p>
+            <p style="font-size: 0.9rem; color: #3a695f; margin-top: 0.5rem;">
+                * 建议使用 Wi-Fi 或稳定的移动网络，以获得更好的观看体验。
+            </p>
+        </div>
+
+        <!-- 最后一句 -->
+        <div class="footer-note">
+            ⚡ 每次打开都是最新整理 · 感谢持续关注
+        </div>
+    </div>
+</div>
+</body>
+</html>
